@@ -1,0 +1,27 @@
+{
+  "name": "api_city_manager",
+  "version": "1.0.0",
+  "description": "REST API to manage cities and clients",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --transpile-only src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adson-SO/api_city_manager.git"
+  },
+  "author": "Adson Sousa de Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adson-SO/api_city_manager/issues"
+  },
+  "homepage": "https://github.com/adson-SO/api_city_manager#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  }
+}

@@ -1,6 +1,6 @@
 import "reflect-metadata";
-
 import express from "express";
+import "./infra/database/postgres";
 
 export class App {
     public server: any;

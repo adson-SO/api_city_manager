@@ -10,5 +10,8 @@ export default new DataSource({
     "synchronize": false,
     "migrations": [
         "src/infra/database/postgres/migrations/*.ts"
+    ],
+    "entities": [
+        "src/entities/*.ts"
     ]
 });

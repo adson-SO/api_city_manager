@@ -25,4 +25,17 @@ export class ClientRepository {
 
         return result;
     }
+
+    async find({ fullname, gender, birthdate, age }): Promise<Client[]> {
+        const database = getRepository(Client);
+
+        const result = database.find({ where: {
+            fullname: fullname,
+            gender: gender,
+            birthdate: birthdate,
+            age: age
+        } });
+
+        return result;
+    }
 }

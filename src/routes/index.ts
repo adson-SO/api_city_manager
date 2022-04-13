@@ -10,6 +10,7 @@ export class Routes {
         router.get("/city", new CityController().find);
 
         router.post("/client", new ClientController().create);
+        router.get("/client", new ClientController().find);
 
         return router;
     }

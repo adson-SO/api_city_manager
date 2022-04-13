@@ -14,4 +14,17 @@ export class ClientController {
             return res.status(500).json(err);
         }
     }
+
+    async find(req: Request, res: Response) {
+        const { fullname, gender, birthdate, age } = req.query;
+        try {
+            const service = new ClientService();
+
+            const result = await service.find({ fullname, gender, birthdate, age });
+
+            return res.status(200).json(result);
+        } catch (err) {
+            return res.status(500).json(err);
+        }
+    }
 }

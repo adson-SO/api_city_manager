@@ -17,4 +17,12 @@ export class ClientService {
 
         return result;
     }
+
+    async find({ fullname, gender, birthdate, age }): Promise<Client[]> {
+        const repository = new ClientRepository();
+
+        const result = await repository.find({ fullname, gender, birthdate, age });
+
+        return result;
+    }
 }

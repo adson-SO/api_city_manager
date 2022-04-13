@@ -1,3 +1,5 @@
+import { getRepository } from "typeorm";
+import { City } from "../entities/City";
 import { Client } from "../entities/Client";
 import { NotFound } from "../errors/NotFound";
 import { ClientRepository } from "../repositories/ClientRepository";
@@ -18,6 +20,12 @@ type ClientUpdateRequest = {
 export class ClientService {
     async create({ fullname, gender, birthdate, age, city_id }: ClientRequest): Promise<Client> {
         const repository = new ClientRepository();
+        const cityRepository = getRepository(City);
+        
+        const city = await cityRepository.findOneBy({ id: city_id });
+        if(!city) {
+            throw new NotFound(city_id);
+        }
 
         const result = await repository.create({ fullname, gender, birthdate, age, city_id });
 
@@ -37,7 +45,7 @@ export class ClientService {
 
         const result = await repository.findById({ id });
         if(!result) {
-            throw new NotFound();
+            throw new NotFound(id);
         }
 
         return result;
@@ -48,7 +56,7 @@ export class ClientService {
 
         const client = await repository.findById({ id });
         if(!client) {
-            throw new NotFound();
+            throw new NotFound(id);
         }
 
         await repository.delete({ id });
@@ -59,7 +67,7 @@ export class ClientService {
 
         const client = await repository.findById({ id });
         if(!client) {
-            throw new NotFound();
+            throw new NotFound(id);
         }
 
         const result = await repository.updateName({ id, fullname });

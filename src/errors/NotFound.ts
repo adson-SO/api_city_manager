@@ -1,9 +1,9 @@
 export class NotFound extends Error {
     name: string;
     description: string;
-    constructor() {
+    constructor(value) {
         super();
         this.name = "Not found";
-        this.description = "This register does not exists in the database"
+        this.description = `Value ${value} does not exist in the database`
     }
 }

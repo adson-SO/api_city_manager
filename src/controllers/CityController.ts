@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { CityService } from "../services/CityService";
 
 export class CityController {
-    async create(req: Request, res: Response) {
+    async create(req: Request, res: Response, next: NextFunction) {
         const { name, estate } = req.body;
         try {
             const service = new CityService();
@@ -11,11 +11,11 @@ export class CityController {
 
             return res.status(201).json(result);
         } catch (err) {
-            return res.status(500).json(err);
+            return next(err);
         }
     }
 
-    async find(req: Request, res: Response) {
+    async find(req: Request, res: Response, next: NextFunction) {
         const { name, estate } = req.query;
         try {
             const service = new CityService();
@@ -24,7 +24,7 @@ export class CityController {
 
             return res.status(200).json(result);
         } catch (err) {
-            return res.status(500).json(err);
+            return next(err);
         }
     }
 }

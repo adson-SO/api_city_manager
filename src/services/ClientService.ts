@@ -8,7 +8,7 @@ import { ClientRepository } from "../repositories/ClientRepository";
 type ClientRequest = {
     fullname: string,
     gender: string,
-    birthdate: Date,
+    birthdate: string,
     age: number,
     city_id: string
 }

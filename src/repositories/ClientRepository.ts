@@ -4,7 +4,7 @@ import { Client } from "../entities/Client";
 type ClientRequest = {
     fullname: string,
     gender: string,
-    birthdate: Date,
+    birthdate: string,
     age: number,
     city_id: string
 }
@@ -39,7 +39,9 @@ export class ClientRepository {
             gender: gender,
             birthdate: birthdate,
             age: age
-        } });
+        },
+        relations: ["city"]
+    });
 
         return result;
     }

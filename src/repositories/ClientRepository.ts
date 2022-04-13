@@ -46,4 +46,10 @@ export class ClientRepository {
 
         return result;
     }
+
+    async delete({ id }): Promise<void> {
+        const database = getRepository(Client);
+
+        await database.delete(id);
+    }
 }

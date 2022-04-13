@@ -33,4 +33,10 @@ export class ClientService {
 
         return result;
     }
+
+    async delete({ id }): Promise<void> {
+        const repository = new ClientRepository();
+
+        await repository.delete({ id });
+    }
 }

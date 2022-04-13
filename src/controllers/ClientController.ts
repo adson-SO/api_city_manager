@@ -40,4 +40,17 @@ export class ClientController {
             return res.status(500).json(err);
         }
     }
+
+    async delete(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const service = new ClientService();
+
+            await service.delete({ id });
+
+            return res.status(204).end();
+        } catch (err) {
+            return res.status(500).json(err);
+        }
+    }
 }

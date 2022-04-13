@@ -12,6 +12,7 @@ export class Routes {
         router.post("/client", new ClientController().create);
         router.get("/client", new ClientController().find);
         router.get("/client/:id", new ClientController().findById);
+        router.delete("/client/:id", new ClientController().delete);
 
         return router;
     }

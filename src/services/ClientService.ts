@@ -1,6 +1,7 @@
 import { getRepository } from "typeorm";
 import { City } from "../entities/City";
 import { Client } from "../entities/Client";
+import { BadRequest } from "../errors/BadRequest";
 import { NotFound } from "../errors/NotFound";
 import { ClientRepository } from "../repositories/ClientRepository";
 
@@ -24,7 +25,7 @@ export class ClientService {
         
         const city = await cityRepository.findOneBy({ id: city_id });
         if(!city) {
-            throw new NotFound(city_id);
+            throw new BadRequest(city_id);
         }
 
         const result = await repository.create({ fullname, gender, birthdate, age, city_id });

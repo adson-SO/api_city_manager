@@ -29,12 +29,20 @@ export class ClientRepository {
     async find({ fullname, gender, birthdate, age }): Promise<Client[]> {
         const database = getRepository(Client);
 
-        const result = database.find({ where: {
+        const result = await database.find({ where: {
             fullname: fullname,
             gender: gender,
             birthdate: birthdate,
             age: age
         } });
+
+        return result;
+    }
+
+    async findById({ id }): Promise<Client> {
+        const database = getRepository(Client);
+
+        const result = await database.findOneBy({ id });
 
         return result;
     }

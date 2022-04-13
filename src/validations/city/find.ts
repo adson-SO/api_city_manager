@@ -5,8 +5,8 @@ export class FindValidation {
     async validate(req: Request, res: Response, next: NextFunction) {
         try {
             const schema = Joi.object({
-                name: Joi.string().max(50).trim(),
-                estate: Joi.string().max(50).trim()
+                name: Joi.string().min(5).trim(),
+                estate: Joi.string().min(5).trim()
             });
 
             const { error } = await schema.validate(req.query, { abortEarly: true });

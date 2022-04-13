@@ -5,8 +5,8 @@ export class CreateValidation {
     async validate(req: Request, res: Response, next: NextFunction) {
         try {
             const schema = Joi.object({
-                name: Joi.string().max(50).trim().required(),
-                estate: Joi.string().max(50).trim().required()
+                name: Joi.string().min(5).trim().required(),
+                estate: Joi.string().min(5).trim().required()
             });
 
             const { error } = await schema.validate(req.body, { abortEarly: true });

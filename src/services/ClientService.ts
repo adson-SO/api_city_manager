@@ -36,6 +36,9 @@ export class ClientService {
         const repository = new ClientRepository();
 
         const result = await repository.findById({ id });
+        if(!result) {
+            throw new NotFound();
+        }
 
         return result;
     }
@@ -53,6 +56,11 @@ export class ClientService {
 
     async updateName({ id, fullname }: ClientUpdateRequest): Promise<Client> {
         const repository = new ClientRepository();
+
+        const client = await repository.findById({ id });
+        if(!client) {
+            throw new NotFound();
+        }
 
         const result = await repository.updateName({ id, fullname });
 

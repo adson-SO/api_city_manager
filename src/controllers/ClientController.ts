@@ -12,11 +12,11 @@ export class ClientController {
 
             return res.status(201).json(result);
         } catch (err) {
-            return res.status(500).json(err);
+            return next(err);
         }
     }
 
-    async find(req: Request, res: Response) {
+    async find(req: Request, res: Response, next: NextFunction) {
         const { fullname, gender, birthdate, age } = req.query;
         try {
             const service = new ClientService();
@@ -25,11 +25,11 @@ export class ClientController {
 
             return res.status(200).json(result);
         } catch (err) {
-            return res.status(500).json(err);
+            return next(err);
         }
     }
 
-    async findById(req: Request, res: Response) {
+    async findById(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params;
         try {
             const service = new ClientService();
@@ -38,7 +38,7 @@ export class ClientController {
 
             return res.status(200).json(result);
         } catch (err) {
-            return res.status(500).json(err);
+            return next(err);
         }
     }
 
@@ -55,7 +55,7 @@ export class ClientController {
         }
     }
 
-    async updateName(req: Request, res: Response) {
+    async updateName(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params;
         const { fullname } = req.body;
         try {
@@ -65,7 +65,7 @@ export class ClientController {
 
             return res.status(200).json(result);
         } catch (err) {
-            return res.status(500).json(err);
+            return next(err);
         }
     }
 }

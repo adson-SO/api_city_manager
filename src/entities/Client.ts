@@ -15,7 +15,7 @@ export class Client {
     gender: string;
 
     @Column()
-    birthdate: Date;
+    birthdate: string;
 
     @Column()
     age: number

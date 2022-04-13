@@ -53,4 +53,18 @@ export class ClientController {
             return res.status(500).json(err);
         }
     }
+
+    async updateName(req: Request, res: Response) {
+        const { id } = req.params;
+        const { fullname } = req.body;
+        try {
+            const service = new ClientService();
+
+            const result = await service.updateName({ id, fullname });
+
+            return res.status(200).json(result);
+        } catch (err) {
+            return res.status(500).json(err);
+        }
+    }
 }

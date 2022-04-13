@@ -1,3 +1,4 @@
+import { UpdateResult } from "typeorm";
 import { Client } from "../entities/Client";
 import { ClientRepository } from "../repositories/ClientRepository";
 
@@ -7,6 +8,11 @@ type ClientRequest = {
     birthdate: Date,
     age: number,
     city_id: string
+}
+
+type ClientUpdateRequest = {
+    id: string,
+    fullname: string
 }
 
 export class ClientService {
@@ -38,5 +44,13 @@ export class ClientService {
         const repository = new ClientRepository();
 
         await repository.delete({ id });
+    }
+
+    async updateName({ id, fullname }: ClientUpdateRequest): Promise<Client> {
+        const repository = new ClientRepository();
+
+        const result = await repository.updateName({ id, fullname });
+
+        return result;
     }
 }

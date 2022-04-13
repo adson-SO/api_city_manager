@@ -13,6 +13,7 @@ export class Routes {
         router.get("/client", new ClientController().find);
         router.get("/client/:id", new ClientController().findById);
         router.delete("/client/:id", new ClientController().delete);
+        router.patch("/client/:id", new ClientController().updateName);
 
         return router;
     }

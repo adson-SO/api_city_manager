@@ -1,8 +1,9 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
+import { nextTick } from "process";
 import { ClientService } from "../services/ClientService";
 
 export class ClientController {
-    async create(req: Request, res: Response) {
+    async create(req: Request, res: Response, next: NextFunction) {
         const { fullname, gender, birthdate, age, city_id } = req.body;
         try {
             const service = new ClientService();
@@ -41,7 +42,7 @@ export class ClientController {
         }
     }
 
-    async delete(req: Request, res: Response) {
+    async delete(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params;
         try {
             const service = new ClientService();
@@ -50,7 +51,7 @@ export class ClientController {
 
             return res.status(204).end();
         } catch (err) {
-            return res.status(500).json(err);
+            return next(err);
         }
     }
 

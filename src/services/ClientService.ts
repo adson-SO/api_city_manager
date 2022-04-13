@@ -1,5 +1,5 @@
-import { UpdateResult } from "typeorm";
 import { Client } from "../entities/Client";
+import { NotFound } from "../errors/NotFound";
 import { ClientRepository } from "../repositories/ClientRepository";
 
 type ClientRequest = {
@@ -42,6 +42,11 @@ export class ClientService {
 
     async delete({ id }): Promise<void> {
         const repository = new ClientRepository();
+
+        const client = await repository.findById({ id });
+        if(!client) {
+            throw new NotFound();
+        }
 
         await repository.delete({ id });
     }

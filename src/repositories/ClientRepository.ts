@@ -1,4 +1,4 @@
-import { getRepository, UpdateResult } from "typeorm";
+import { getRepository } from "typeorm";
 import { Client } from "../entities/Client";
 
 type ClientRequest = {

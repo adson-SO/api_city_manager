@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { nextTick } from "process";
 import { ClientService } from "../services/ClientService";
 
 export class ClientController {

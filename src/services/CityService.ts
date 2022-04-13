@@ -14,4 +14,12 @@ export class CityService {
 
         return result;
     }
+
+    async find({ name, estate }): Promise<City[]> {
+        const repository = new CityRepository();
+
+        const result = await repository.find({ name, estate });
+
+        return result;
+    }
 }

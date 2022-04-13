@@ -6,6 +6,7 @@ export class Routes {
         const router = Router();
         
         router.post("/city", new CityController().create);
+        router.get("/city", new CityController().find);
 
         return router;
     }

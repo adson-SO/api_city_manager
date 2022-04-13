@@ -14,4 +14,17 @@ export class CityController {
             return res.status(500).json(err);
         }
     }
+
+    async find(req: Request, res: Response) {
+        const { name, estate } = req.query;
+        try {
+            const service = new CityService();
+
+            const result = await service.find({ name, estate });
+
+            return res.status(200).json(result);
+        } catch (err) {
+            return res.status(500).json(err);
+        }
+    }
 }

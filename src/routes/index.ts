@@ -18,7 +18,7 @@ export class Routes {
         router.get("/client", new ClientFindValidation().validate, new ClientController().find);
         router.get("/client/:id", new IdValidation().validate, new ClientController().findById);
         router.delete("/client/:id", new IdValidation().validate, new ClientController().delete);
-        router.patch("/client/:id/fullname", new IdValidation().validate, new ClientController().updateName);
+        router.patch("/client/:id/name", new IdValidation().validate, new ClientController().updateName);
 
         return router;
     }

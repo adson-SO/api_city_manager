@@ -1,5 +1,4 @@
 import { createConnection } from 'typeorm';
-import DataSource from "../../../../ormconfig"
 
 class Database {
   constructor() {
@@ -7,8 +6,7 @@ class Database {
   }
 
   connect(): void {
-    createConnection()
-    .then(() => console.log("Connected to DB"));
+    createConnection();
   }
 }
 

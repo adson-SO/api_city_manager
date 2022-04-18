@@ -227,3 +227,10 @@ Exemplo de resposta:
     "city_id": "872231ad-2718-4560-9b97-d2d7141db779"
 }
 ```
+
+## Swagger
+
+Para acessar o Swagger UI da aplicação, com a aplicação rodando, acesse esta url:
+```
+http://localhost:3000/api/v1/api-docs/
+```

@@ -1,0 +1,348 @@
+openapi: 3.0.1
+info:
+  title: API City Manager
+  description: API REST para gerenciamento de cidades e clientes
+  version: 1.0.0
+externalDocs:
+  description: Documentação
+  url: https://github.com/adson-SO/api_city_manager
+servers:
+- url: http://localhost:3000/api/v1
+  description: API City Manager
+paths:
+  /city:
+    post:
+      summary: Cadastra uma nova cidade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                estate:
+                  type: string
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  estate:
+                    type: string
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+    get:
+      summary: Lista todas as cidades
+      parameters:
+      - name: name
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: estate
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    estate:
+                      type: string
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+  /client:
+    post:
+      summary: Cadastra um novo cliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                gender:
+                  type: string
+                birthdate:
+                  type: string
+                age:
+                  type: number
+                city_id:
+                  type: string
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  fullname:
+                    type: string
+                  gender:
+                    type: string
+                  birthdate:
+                    type: string
+                  age:
+                    type: number
+                  city_id:
+                    type: string
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+    get:
+      summary: Lista todos os clientes
+      parameters:
+      - name: fullname
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: gender
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: birthdate
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: age
+        in: query
+        schema:
+          type: number
+        required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    fullname:
+                      type: string
+                    gender:
+                      type: string
+                    birthdate:
+                      type: string
+                    age:
+                      type: number
+                    city_id:
+                      type: string
+                    city:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        estate:
+                          type: string
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name: 
+                    type: string
+                  estate:
+                    type: string
+  /client/{id}:
+    get:
+      summary: Busca um cliente pelo seu id
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  fullname:
+                    type: string
+                  gender:
+                    type: string
+                  birthdate:
+                    type: string
+                  age:
+                    type: number
+                  city_id:
+                    type: string
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+    delete:
+      summary: Deleta um cliente pelo seu id
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+  /client/{id}/name:
+    patch:
+      summary: Atualiza o nome de um cliente pelo seu id
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  fullname:
+                    type: string
+                  gender:
+                    type: string
+                  birthdate:
+                    type: string
+                  age:
+                    type: number
+                  city_id:
+                    type: string
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string

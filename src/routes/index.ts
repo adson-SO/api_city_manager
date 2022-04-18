@@ -6,6 +6,8 @@ import { FindValidation } from "../validations/city/find";
 import { ClientCreateValidation } from "../validations/client/create";
 import { ClientFindValidation } from "../validations/client/find";
 import { IdValidation } from "../validations/IdValidation";
+import swaggerUi from "swagger-ui-express";
+import swaggerDoc from "../../swagger.json";
 
 export class Routes {
     handle(): Router {
@@ -19,6 +21,8 @@ export class Routes {
         router.get("/client/:id", new IdValidation().validate, new ClientController().findById);
         router.delete("/client/:id", new IdValidation().validate, new ClientController().delete);
         router.patch("/client/:id/name", new IdValidation().validate, new ClientController().updateName);
+
+        router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
         return router;
     }

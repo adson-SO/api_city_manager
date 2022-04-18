@@ -37,6 +37,8 @@ $ git clone https://github.com/adson-SO/api_city_manager.git
 # Instale as dependências do projeto digitando o seguinte comando no terminal:
 npm install
 
+# Adicione suas varíaveis de ambiente no arquivo .env.example
+
 # Rode as migrations da aplicação digitando o seguinte comando no terminal:
 npm run typeorm migration:run -- -d ormconfig.ts
 

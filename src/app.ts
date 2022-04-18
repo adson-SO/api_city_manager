@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import cors from "cors";
 import express from "express";
 import { Routes } from "./routes"
 import { ErrorHandler } from "./middlewares/ErrorHandler";
@@ -15,6 +16,7 @@ export class App {
     }
 
     middlewares(): void {
+        this.server.use(cors());
         this.server.use(express.json());
     }
 
